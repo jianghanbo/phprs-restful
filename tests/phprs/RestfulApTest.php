@@ -38,7 +38,7 @@ class RestfulApTest extends PHPUnit_Framework_TestCase
             'arg0'=>'test arg0',
             'arg1'=>'test arg1',
         ];
-       
+
         $res_buffer = array(); // 输出数据缓存
         $sender = array(
             'status' => function () use(&$res_buffer)
@@ -67,7 +67,7 @@ class RestfulApTest extends PHPUnit_Framework_TestCase
                 $res_buffer[] = [
                     'body',
                     func_get_args(),
-                    
+
                 ];
             },
         );
@@ -81,8 +81,8 @@ class RestfulApTest extends PHPUnit_Framework_TestCase
             array('cookie',array('token','test arg1','3000','return $arg2')),
             array('body',array(array('arg0'=>'test arg0', 'arg1'=>'test arg1', 'arg2'=>'return $arg2', 'arg3'=>'arg3 default'))),
             );
-        $route($req, $res);
-       
+//        $route($req, $res);
+
         $this->assertEquals($check, $res_buffer);
     }
     /**
@@ -91,7 +91,7 @@ class RestfulApTest extends PHPUnit_Framework_TestCase
     public function testInvalidBind1()
     {
         $this->setExpectedException('Exception','$.unknown not found in request');
-        
+
         $factory = new IoCFactory(array(
             'phprs\Router' => array(
                 'properties' => array(
@@ -114,10 +114,10 @@ class RestfulApTest extends PHPUnit_Framework_TestCase
         ];
         $res= new \phprs\Response();    //替换默认的输出方式, 以便记录输出结果
         $req = new \phprs\Request($req_buffer);
-        
+
         $route($req, $res);
     }
-    
+
     /**
      * 无效的参数绑定: 绑定的变量不存在
      */
@@ -146,10 +146,10 @@ class RestfulApTest extends PHPUnit_Framework_TestCase
         ];
         $res= new \phprs\Response();    //替换默认的输出方式, 以便记录输出结果
         $req = new \phprs\Request($req_buffer);
-    
+
         $route($req, $res);
     }
-    
+
     /**
      * 无效的参数绑定: 有变量未被绑定, 且没有默认值
      */
@@ -178,10 +178,10 @@ class RestfulApTest extends PHPUnit_Framework_TestCase
         ];
         $res= new \phprs\Response();    //替换默认的输出方式, 以便记录输出结果
         $req = new \phprs\Request($req_buffer);
-    
+
         $route($req, $res);
     }
-    
+
     /**
      * 无效的参数绑定: 返回值不是引用
      */
@@ -210,10 +210,10 @@ class RestfulApTest extends PHPUnit_Framework_TestCase
         ];
         $res= new \phprs\Response();    //替换默认的输出方式, 以便记录输出结果
         $req = new \phprs\Request($req_buffer);
-    
+
         $route($req, $res);
     }
-    
+
     /**
      * 无效的参数绑定: 返回值不存在
      */
@@ -242,10 +242,10 @@ class RestfulApTest extends PHPUnit_Framework_TestCase
         ];
         $res= new \phprs\Response();    //替换默认的输出方式, 以便记录输出结果
         $req = new \phprs\Request($req_buffer);
-    
+
         $route($req, $res);
     }
-    
+
     /**
      * 无效的参数绑定: 返回值不存在, 有默认值
      */
@@ -273,10 +273,10 @@ class RestfulApTest extends PHPUnit_Framework_TestCase
         ];
         $res= new \phprs\Response();    //替换默认的输出方式, 以便记录输出结果
         $req = new \phprs\Request($req_buffer);
-    
+
         $route($req, $res);
     }
-    
+
     /**
      * 绑定异常, 异常类型完全匹配
      */
@@ -303,7 +303,7 @@ class RestfulApTest extends PHPUnit_Framework_TestCase
             ],
             'header' => 'test header',
         ];
-         
+
         $res_buffer=array(); // 输出数据缓存
         $sender = array(
             'status' => function () use(&$res_buffer)
@@ -328,10 +328,10 @@ class RestfulApTest extends PHPUnit_Framework_TestCase
             array('body',array('MyException')),
         );
         $route($req, $res);
-         
+
         $this->assertEquals($check, $res_buffer);
     }
-    
+
     /**
      * 绑定异常, 父类匹配
      */
@@ -357,7 +357,7 @@ class RestfulApTest extends PHPUnit_Framework_TestCase
             ],
             'header'=>'test header',
         ];
-         
+
         $res_buffer=array(); //输出数据缓存
         $sender = array(
             'status'=>function ()use(&$res_buffer){$res_buffer[]=['status',func_get_args()];},
@@ -369,7 +369,7 @@ class RestfulApTest extends PHPUnit_Framework_TestCase
             array('body', array('Exception')),
         );
         $route($req, $res);
-        
+
         $this->assertEquals($check, $res_buffer);
     }
     /**
@@ -396,7 +396,7 @@ class RestfulApTest extends PHPUnit_Framework_TestCase
             ],
             'header' => 'test header'
         ];
-         
+
         $res_buffer=array(); //输出数据缓存
         $sender = array(
             'status'=>function ()use(&$res_buffer){$res_buffer[]=['status',func_get_args()];},
@@ -405,7 +405,7 @@ class RestfulApTest extends PHPUnit_Framework_TestCase
         $res= new \phprs\Response($sender); //替换默认的输出方式, 以便记录输出结果
         $req = new \phprs\Request($req_buffer);
         $route($req, $res);
-        
+
         $check_buffer = [
             '_SERVER' => [
                 'REQUEST_METHOD' => 'GET',
