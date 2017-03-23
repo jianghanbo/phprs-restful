@@ -1,4 +1,4 @@
-# phprs 
+# phprs
 [![Codewake](https://www.codewake.com/badges/codewake2.svg)](https://www.codewake.com/p/caoym-phprs-restful)
 [![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/caoym/phprs-restful)
 [![Build Status](https://travis-ci.org/caoym/phprs-restful.svg)](https://travis-ci.org/caoym/phprs-restful)
@@ -21,7 +21,7 @@ PHP5.4+
      */
     class HelloWorld
     {
-        /** 
+        /**
          * @route({"GET","/"})
          */
         public function doSomething() {
@@ -36,11 +36,11 @@ PHP5.4+
         "msg":"Hello World!"
     }
     ```
-    
-## What happened
-See HelloWorld.php, the annotations like @path，@route are used to define routers. Phprs also use annotations for two-way parameter binding, dependency injection, etc. 
 
-## Examples 
+## What happened
+See HelloWorld.php, the annotations like @path，@route are used to define routers. Phprs also use annotations for two-way parameter binding, dependency injection, etc.
+
+## Examples
 "orders manage"
 
 ```PHP
@@ -49,14 +49,14 @@ See HelloWorld.php, the annotations like @path，@route are used to define route
  */
 class Orders
 {
-    /** 
+    /**
      * @route({"GET","/"})
      * @return({"body"})
      */
     public function getAllOrders() {
         return Sql::select('*')->from('orders')->get($this->db);
     }
-    /** 
+    /**
      * @route({"GET","/*"})
      * @param({"id", "$.path[1]"})
       * @return({"body"})
@@ -64,8 +64,8 @@ class Orders
     public function getOrderById($id) {
         return Sql::select('*')->from('orders')->where('id=?',$id)->get($this->db);
     }
-    
-    /** 
+
+    /**
      * @route({"POST","/"})
      * @param({"goods_info", "$._POST.goods"})
      * @return({"body"})
@@ -76,7 +76,7 @@ class Orders
     }
     /**
      * Instance of class \PDO
-     * @property 
+     * @property
      */
     public $db;
 }
@@ -106,7 +106,7 @@ class Orders
 
     Annotations: `@param`, `@return`,`@throws` is used to bind variables between function parameters and http request or response.
 
-       
+
         ------------------------------------------+-----------------------------
         @param({"arg0","$._GET.arg0"})            | $arg0 = $_GET['arg0']
         ------------------------------------------+-----------------------------
@@ -130,7 +130,7 @@ class Orders
         ----------------------------------+-----------------------------
         @cache({"ttl",3600})              | set cache as fixed time expire, as ttl 1 hour.
         ----------------------------------+-----------------------------
-        @cache({"checker", "$checker"})   | Use dynamic strategy to check caches. 
+        @cache({"checker", "$checker"})   | Use dynamic strategy to check caches.
                                           | $checker is set in method, and will be invoked to check cache expired with $checker($data, $create_time), for examples use $check = new FileExpiredChecker('file.tmp'); to make cache invalidated if file.tmp modified.
 
 4. **Dependency Injection**
@@ -151,7 +151,7 @@ class Orders
             "properties":{
                 "dsn":"mysql:host=127.0.0.1;dbname=testdb;",
                 "username":"test",
-                "passwd":"test"  		
+                "passwd":"test"
             }
        }
     }
@@ -165,7 +165,7 @@ class Orders
 6. **Hook**
 
    The implement of a hook is the same as API.
-   
+
 7. **ezsql**
 
    An easy-to-use and IDE friendly SQL builder. Object-oriented SQL. @see https://github.com/caoym/ezsql
@@ -181,7 +181,7 @@ class Orders
    ->forUpdate()->of('d')
    ->get($db);
    ```
-   
+
 ## Quick start
 https://github.com/caoym/phprs-restful/wiki/Quick-start
 
@@ -189,4 +189,7 @@ https://github.com/caoym/phprs-restful/wiki/Quick-start
 
 1. Inject Remote service support
 2. User-defined annotations
-3. Graceful auto document 
+3. Graceful auto document
+
+
+git test.

@@ -20,11 +20,6 @@
     </phpunit_settings>
   </component>
   <component name="PhpXdebugProxy" ide_key="phpStorm" host="127.0.0.2" port="8088" />
-  <component name="ProjectDictionaryState">
-    <dictionary name="qianyunlai.com" />
-    <dictionary name="wenjianbao" />
-    <dictionary name="jianbao8642" />
-  </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
       <profile-state>
